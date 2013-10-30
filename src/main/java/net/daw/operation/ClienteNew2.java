@@ -14,12 +14,16 @@ public class ClienteNew2 extends Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/mensaje.jsp");   
+        oContexto.setVista("jsp/mensaje.jsp");
         ClienteBean oClienteBean = new ClienteBean();
         ClienteDao oClienteDao = new ClienteDao(oContexto.getEnumTipoConexion());
         ClienteParam oClienteParam = new ClienteParam(request);
         oClienteBean = oClienteParam.loadId(oClienteBean);
-        oClienteBean = oClienteParam.load(oClienteBean);
+        try {
+            oClienteBean = oClienteParam.load(oClienteBean);
+        } catch (NumberFormatException e) {
+            return "Tipo de dato incorrecto en uno de los campos del formulario";
+        }
         try {
             oClienteDao.set(oClienteBean);
         } catch (Exception e) {

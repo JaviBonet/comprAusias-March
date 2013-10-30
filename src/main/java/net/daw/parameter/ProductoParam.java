@@ -5,6 +5,7 @@
  */
 package net.daw.parameter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.ProductoBean;
 import net.daw.bean.TipoproductoBean;
@@ -21,32 +22,45 @@ public class ProductoParam {
         this.request = request;
     }
 
-    public ProductoBean loadId(ProductoBean oProducto) {
-        if (request.getParameter("id") != null) {
-            oProducto.setId(Integer.parseInt(request.getParameter("id")));
-        } else {
-            oProducto.setId(0);
+    public ProductoBean loadId(ProductoBean oProducto) throws ServletException {
+        try {
+            if (request.getParameter("id") != null) {
+                oProducto.setId(Integer.parseInt(request.getParameter("id")));
+            } else {
+                oProducto.setId(0);
+            }
+        } catch (NumberFormatException e) {
+            throw new ServletException("Controller: Error: loadId: Formato de datos en parámetros incorrecto " + e.getMessage());
+        }
+        return oProducto;
+
+    }
+
+    public ProductoBean load(ProductoBean oProducto) throws NumberFormatException {
+        try {
+            if ((request.getParameter("codigo") != null)) {
+                oProducto.setCodigo(request.getParameter("codigo"));
+            }
+            if ((request.getParameter("descripcion") != null)) {
+                oProducto.setDescripcion(request.getParameter("descripcion"));
+            }
+            if ((request.getParameter("precio") != null)) {
+                oProducto.setPrecio(Double.parseDouble(request.getParameter("precio")));
+            }
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Controller: Error: load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oProducto;
     }
 
-    public ProductoBean load(ProductoBean oProducto) {
-        if ((request.getParameter("codigo") != null)) {
-            oProducto.setCodigo(request.getParameter("codigo"));
-        }
-        if ((request.getParameter("descripcion") != null)) {
-            oProducto.setDescripcion(request.getParameter("descripcion"));
-        }
-        if ((request.getParameter("precio") != null)) {
-            oProducto.setPrecio(Float.parseFloat(request.getParameter("precio")));
-        }
-        return oProducto;
-    }
-
-    public ProductoBean loadTipoProducto(ProductoBean oProducto) {
-        if ((request.getParameter("id_tipoproducto" ) != null)) {
-            TipoproductoBean oTipoproducto = new TipoproductoBean(Integer.parseInt(request.getParameter("id_tipoproducto")));
-            oProducto.setTipoProducto(oTipoproducto);
+    public ProductoBean loadTipoProducto(ProductoBean oProducto) throws NumberFormatException {
+        try {
+            if ((request.getParameter("id_tipoproducto") != null)) {
+                TipoproductoBean oTipoproducto = new TipoproductoBean(Integer.parseInt(request.getParameter("id_tipoproducto")));
+                oProducto.setTipoProducto(oTipoproducto);
+            }
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Controller: Error: loadTipoProducto: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oProducto;
     }

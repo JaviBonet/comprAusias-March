@@ -2,7 +2,7 @@
 <%@page import="net.daw.helper.Contexto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%
-    UsuarioBean user = (UsuarioBean) request.getSession().getAttribute("usuario");
+    UsuarioBean user = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
     Contexto oContexto = (Contexto) request.getAttribute("contexto");
 %>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span>
                     </a> 
-                    <a class="brand" href="Controller">Comprausiàs March</a>
+                    <a class="brand" href="Controller">ComprAusiàs March</a>
                     <div class="nav-collapse collapse">
                         <%
                             if (user != null) {

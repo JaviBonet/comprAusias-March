@@ -2,18 +2,19 @@ package net.daw.bean;
 
 public class ProductoBean {
 
-    private int id;
-    private String codigo;
-    private String descripcion;
-    private Float precio;
-    private TipoproductoBean tipoProducto;
-          
-    public ProductoBean() {
+    private int id = 0;
+    private String codigo = "";
+    private String descripcion = "";
+    private Double precio = 0.0;
+    private TipoproductoBean tipoProducto = null;
 
+    public ProductoBean() {
+        this.tipoProducto = new TipoproductoBean();
     }
 
     public ProductoBean(int id) {
         this.id = id;
+        this.tipoProducto = new TipoproductoBean();
     }
 
     public int getId() {
@@ -40,11 +41,11 @@ public class ProductoBean {
         this.descripcion = descripcion;
     }
 
-    public Float getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Float precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -55,6 +56,5 @@ public class ProductoBean {
     public void setTipoProducto(TipoproductoBean tipoProducto) {
         this.tipoProducto = tipoProducto;
     }
-
 
 }

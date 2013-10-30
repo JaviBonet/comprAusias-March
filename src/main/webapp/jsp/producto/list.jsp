@@ -10,6 +10,11 @@
     Iterator<ProductoBean> oIterador = alPagina.listIterator();
 %>
 <h1>Listado de productos</h1>
+<%
+    if (!oIterador.hasNext()) {
+        out.print("<h4>Listado vacío</h4>");
+    } else {
+%>
 <table class="table table-hover table-condensed">
     <tr>
         <th>id</th>
@@ -56,4 +61,6 @@
         }
     %>
 </table>
-
+<%
+    }
+%>

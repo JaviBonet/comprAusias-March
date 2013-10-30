@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 27, 2013 at 07:55 PM
+-- Generation Time: Oct 29, 2013 at 12:59 PM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -312,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `codigo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `descripcion` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `precio` decimal(6,2) DEFAULT NULL,
-  `id_tipoproducto` int(6) NOT NULL DEFAULT '1',
+  `id_tipoproducto` int(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=404 ;
 
@@ -325,8 +325,8 @@ INSERT INTO `producto` (`id`, `codigo`, `descripcion`, `precio`, `id_tipoproduct
 (2, '44RR456', 'Taladro', '100.00', 2),
 (3, '6RRTU3', 'Sierra de calar', '123.00', 1),
 (4, 'SE2PI', 'Pincel', '23.00', 1),
-(5, 'ED45E', 'Caja de cambios', '231.00', 1),
-(8, '455T', 'Llave de mano', '23.50', 1),
+(5, 'ED45E', 'Caja de cambios', '231.00', 2),
+(8, '455T', 'Llave de mano', '23.50', 2),
 (10, '1413D', 'Llave auxiliar de emergencia', '740.91', 1),
 (11, '1414D', 'Llave auxiliar de repuesto', '864.75', 1),
 (12, '1415D', 'Llave auxiliar de paso', '1269.10', 1),
@@ -729,7 +729,7 @@ INSERT INTO `producto` (`id`, `codigo`, `descripcion`, `precio`, `id_tipoproduct
 
 CREATE TABLE IF NOT EXISTS `tipoproducto` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(254) NOT NULL,
+  `descripcion` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `descripcion` (`descripcion`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;

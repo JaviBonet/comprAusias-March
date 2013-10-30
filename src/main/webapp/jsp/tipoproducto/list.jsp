@@ -9,7 +9,16 @@
     ArrayList<TipoproductoBean> alPagina = (ArrayList<TipoproductoBean>) alObjetoParametro.get(0);
     Iterator<TipoproductoBean> oIterador = alPagina.listIterator();
 %>
+<% if (!oContexto.getMetodo().equalsIgnoreCase("selectone")) {%>
 <h1>Listado de tipos de productos</h1>
+<% } else { %>
+<h1>Selección de tipos de productos</h1>
+<% } %>
+<%
+    if (!oIterador.hasNext()) {
+        out.print("<h4>Listado vacío</h4>");
+    } else {
+%>
 <table class="table table-hover table-condensed">
     <tr>
         <th>id</th>
@@ -26,13 +35,13 @@
         <td>
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <% if (!oContexto.getMetodo().equalsIgnoreCase("selectone")) { %>
+                    <% if (!oContexto.getMetodo().equalsIgnoreCase("selectone")) {%>
                     <a class="btn btn-mini" href="Controller?class=tipoproducto&method=view&id=<%=oTipoproductoBean.getId()%>"><i class="icon-eye-open"></i></a>                    
                     <a class="btn btn-mini" href="Controller?class=tipoproducto&method=update&id=<%=oTipoproductoBean.getId()%>"><i class="icon-pencil"></i></a>           
                     <a class="btn btn-mini" href="Controller?class=tipoproducto&method=remove&id=<%=oTipoproductoBean.getId()%>"><i class="icon-trash"></i></a>            
-                    <% } else { %>
+                        <% } else {%>
                     <a class="btn btn-mini" href="Controller?class=producto&method=updatetipoproducto&id=<%=oContexto.getId()%>&id_tipoproducto=<%=oTipoproductoBean.getId()%>&selectonetable=<%=oContexto.getSelectOneTable()%>&selectonefield=<%=oContexto.getSelectOneField()%>"><i class="icon-ok"></i></a>                    
-                    <% } %>
+                        <% } %>
                 </div>
             </div>
         </td>
@@ -49,3 +58,6 @@
         }
     %>
 </table>
+<%
+    }
+%>

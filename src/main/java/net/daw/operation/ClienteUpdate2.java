@@ -18,7 +18,11 @@ public class ClienteUpdate2 extends Operation {
         ClienteDao oClienteDao = new ClienteDao(oContexto.getEnumTipoConexion());
         ClienteParam oClienteParam = new ClienteParam(request);
         oClienteBean = oClienteParam.loadId(oClienteBean);
-        oClienteBean = oClienteParam.load(oClienteBean);
+        try {
+            oClienteBean = oClienteParam.load(oClienteBean);
+        } catch (NumberFormatException e) {
+            return "Tipo de dato incorrecto en uno de los campos del formulario";
+        }         
         try {
             oClienteDao.set(oClienteBean);
         } catch (Exception e) {

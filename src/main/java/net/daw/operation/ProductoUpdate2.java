@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.daw.bean.ProductoBean;
+import net.daw.bean.TipoproductoBean;
 import net.daw.dao.ProductoDao;
 import net.daw.helper.Contexto;
 import net.daw.parameter.ProductoParam;
@@ -13,12 +14,17 @@ public class ProductoUpdate2 extends Operation {
     @Override
     public Object execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Contexto oContexto = (Contexto) request.getAttribute("contexto");
-        oContexto.setVista("jsp/mensaje.jsp");   
+        oContexto.setVista("jsp/mensaje.jsp");
         ProductoBean oProductoBean = new ProductoBean();
         ProductoDao oProductoDao = new ProductoDao(oContexto.getEnumTipoConexion());
         ProductoParam oProductoParam = new ProductoParam(request);
         oProductoBean = oProductoParam.loadId(oProductoBean);
-        oProductoBean = oProductoParam.load(oProductoBean);
+        oProductoBean = oProductoDao.get(oProductoBean);
+        try {
+            oProductoBean = oProductoParam.load(oProductoBean);
+        } catch (NumberFormatException e) {
+            return "Tipo de dato incorrecto en uno de los campos del formulario";
+        }
         try {
             oProductoDao.set(oProductoBean);
         } catch (Exception e) {

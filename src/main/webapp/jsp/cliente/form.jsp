@@ -1,6 +1,7 @@
 <%@page import="net.daw.helper.Contexto"%>
 <%@page import="net.daw.bean.ClienteBean"%>
 <% Contexto oContexto = (Contexto) request.getAttribute("contexto");
+    String strTitulo = "";
     String strControlEnabled = "";
     String strValueBoton = "Enviar";
     Integer id = 0;
@@ -17,17 +18,20 @@
         email = oClienteBean.getEmail();
     }
     if (oContexto.getMetodo().equals("view")) {
+        strTitulo = "Vista";
         strControlEnabled = "disabled=\"true\"";
         strValueBoton = "Cerrar";
     }
     if (oContexto.getMetodo().equals("update")) {
+        strTitulo = "Edición";
         strValueBoton = "Modificar";
     }
     if (oContexto.getMetodo().equals("new")) {
+        strTitulo = "Alta";
         strValueBoton = "Crear";
     }
 %>
-<h1>Edición de cliente</h1>
+<h1><%=strTitulo%> de cliente</h1>
 <form class="semantic" action="Controller" method="post" id="clienteForm">
     <fieldset>
         <legend>Formulario de cliente</legend>

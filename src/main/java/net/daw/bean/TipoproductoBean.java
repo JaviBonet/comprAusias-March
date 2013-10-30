@@ -11,8 +11,8 @@ package net.daw.bean;
  */
 public class TipoproductoBean {
 
-    private int id;
-    private String descripcion;
+    private int id = 0;
+    private String descripcion = "";
 
     public TipoproductoBean() {
 

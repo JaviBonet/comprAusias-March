@@ -10,6 +10,11 @@
     Iterator<ClienteBean> oIterador = alPagina.listIterator();
 %>
 <h1>Listado de clientes</h1>
+<%
+    if (!oIterador.hasNext()) {
+        out.print("<h4>Listado vacío</h4>");
+    } else {
+%>
 <table class="table table-hover table-condensed">
     <tr>
         <th>id</th>
@@ -17,8 +22,9 @@
         <th>ape1</th>
         <th>ape2</th>
         <th>email</th>
-        <th colspan="2">Operaciones</th>
+        <th>Operaciones</th>
     </tr>
+
     <%
         while (oIterador.hasNext()) {
             ClienteBean oClienteBEAN = oIterador.next();
@@ -51,4 +57,6 @@
         }
     %>
 </table>
-
+<%
+    }
+%>

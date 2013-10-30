@@ -29,6 +29,6 @@ public class ProductoUpdatetipoproducto1 extends Operation {
         } catch (Exception e) {
             throw new ServletException("ProductoController: Update Error: Phase 2: " + e.getMessage());
         }
-        return "Se ha modificado la información del producto con id=" + Integer.toString(oProductoBean.getId());
+        return "Se ha modificado la información del producto con id=" + Integer.toString(oProductoBean.getId()) + " <br /> <a href=\"Controller?class=producto&method=list\">Volver al listado de producto</a>";
     }
 }

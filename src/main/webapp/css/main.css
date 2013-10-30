@@ -23,7 +23,7 @@ body {
 .table th, .table td {
     vertical-align:middle;
 }
-#loginForm{
+#loginForm, #mensaje{
     margin:0 auto;
     width: 50%;
 }

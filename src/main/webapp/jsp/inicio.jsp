@@ -1,5 +1,6 @@
 <div class="hero-unit">
-    <h1>Bienvenidos a Comprausiàs March v02</h1>
+    <h1>Bienvenidos a ComprAusiàs March (v.03)</h1>
+    <h5>Desarrollo de aplicaciones web en entorno servidor. CPIFP Ausiàs March. Curso 2013-2014.</h5>    
 </div>
 <div class="row-fluid">
     <div class="span8">

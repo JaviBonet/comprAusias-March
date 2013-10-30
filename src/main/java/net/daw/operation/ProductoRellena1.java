@@ -74,7 +74,7 @@ public class ProductoRellena1 extends Operation {
                     oProductoBean.setId(0);
                     oProductoBean.setCodigo(Character.toUpperCase(primero.charAt(0)) + Character.toUpperCase(segundo.charAt(0)) + contador.toString() + Character.toUpperCase(tercero.charAt(0)));
                     oProductoBean.setDescripcion(primero + " " + segundo + " " + tercero);
-                    oProductoBean.setPrecio(Float.parseFloat(Integer.toString(generator.nextInt(2000)) + "." + Integer.toString(generator.nextInt(99))));
+                    oProductoBean.setPrecio(Double.parseDouble(Integer.toString(generator.nextInt(2000)) + "." + Integer.toString(generator.nextInt(99))));
                     try {
                         oProductoDao.set(oProductoBean);
 

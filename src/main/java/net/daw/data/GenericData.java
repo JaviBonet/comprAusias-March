@@ -36,6 +36,8 @@ public interface GenericData {
     public abstract void removeOne(int id, String tabla) throws Exception;
 
     public abstract void rollbackTrans() throws Exception;
+    
+    public void setNull(int intId, String strTabla, String strCampo) throws Exception;
 
     public abstract void updateOne(int id, String tabla, String campo, String valor) throws Exception;
     

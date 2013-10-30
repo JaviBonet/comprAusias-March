@@ -17,10 +17,21 @@ public class UsuarioDao {
     public UsuarioBean get(UsuarioBean oUsuario) throws Exception {
         try {
             oMysql.conexion(enumTipoConexion);
-            oUsuario.setId(Integer.parseInt(oMysql.getId("usuario", "login", oUsuario.getLogin())));
-            if (oMysql.getOne("usuario", "password", oUsuario.getId()).equals(oUsuario.getPassword())) {
-                oUsuario.setNombre(oMysql.getOne("usuario", "nombre", oUsuario.getId()));
-                oUsuario.setEmail(oMysql.getOne("usuario", "email", oUsuario.getId()));
+            String strId = oMysql.getId("usuario", "login", oUsuario.getLogin());
+            if (strId == null) {
+                oUsuario.setId(0);
+            } else {
+                oUsuario.setId(Integer.parseInt(strId));
+            }
+            String strPass = oMysql.getOne("usuario", "password", oUsuario.getId());
+            if (strPass != null) {
+                if (strPass.equals(oUsuario.getPassword())) {
+                    oUsuario.setNombre(oMysql.getOne("usuario", "nombre", oUsuario.getId()));
+                    oUsuario.setEmail(oMysql.getOne("usuario", "email", oUsuario.getId()));
+                }
+            } else {
+                oUsuario.setNombre("");
+                oUsuario.setEmail("");
             }
             oMysql.desconexion();
             return oUsuario;

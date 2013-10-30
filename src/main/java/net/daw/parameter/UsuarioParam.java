@@ -5,6 +5,7 @@
  */
 package net.daw.parameter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.UsuarioBean;
 
@@ -24,12 +25,16 @@ public class UsuarioParam {
         return null;
     }
 
-    public UsuarioBean load(UsuarioBean oUsuario) {
-        if ((request.getParameter("login") != null)) {
-            oUsuario.setLogin(request.getParameter("login"));
-        }
-        if ((request.getParameter("password") != null)) {
-            oUsuario.setPassword(request.getParameter("password"));
+    public UsuarioBean load(UsuarioBean oUsuario) throws NumberFormatException {
+        try {
+            if ((request.getParameter("login") != null)) {
+                oUsuario.setLogin(request.getParameter("login"));
+            }
+            if ((request.getParameter("password") != null)) {
+                oUsuario.setPassword(request.getParameter("password"));
+            }
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Controller: Error: load: Formato de datos en parámetros incorrecto " + e.getMessage());
         }
         return oUsuario;
     }
